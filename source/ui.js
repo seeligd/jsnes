@@ -168,7 +168,6 @@ if (typeof jQuery !== 'undefined') {
                         self.nes.keyboard.keyPress(evt);
                     }).
                     bind('controller', function(evt,data) {
-                      console.log("ui: controller:", evt,data);
                       _.each(data.press, function(k) { self.nes.keyboard.setTouch(k,"pressed");});
                       _.each(data.release, function(k) { self.nes.keyboard.setTouch(k)});
                     });
