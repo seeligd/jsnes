@@ -66,6 +66,25 @@ JSNES.Keyboard.prototype = {
         return false; // preventDefault
     },
 
+    setTouch: function(key, pos, player) {
+      var state = this.state1, value = 0x40;
+      if (player !== undefined) { state = this.state2; }
+      if (pos === "pressed") { value = 0x41; }
+
+      switch(key) {
+        case "a" : state[this.keys.KEY_A] = value; break;
+        case "b" : state[this.keys.KEY_B] = value; break;
+        case "up" : state[this.keys.KEY_UP] = value; break;
+        case "down" : state[this.keys.KEY_DOWN] = value; break;
+        case "left" : state[this.keys.KEY_LEFT] = value; break;
+        case "right" : state[this.keys.KEY_RIGHT] = value; break;
+        case "select" : state[this.keys.KEY_SELECT] = value; break;
+        case "start" : state[this.keys.KEY_START] = value; break;
+        default: return true;
+      }
+      return false;
+    },
+
     keyDown: function(evt) {
         if (!this.setKey(evt.keyCode, 0x41) && evt.preventDefault) {
             evt.preventDefault();
