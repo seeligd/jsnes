@@ -177,11 +177,17 @@ if (typeof jQuery !== 'undefined') {
             };
         
             UI.prototype = {    
-            		sendInput: function(data) {
-            			var self = this;
-									_.each(data.press, function(k) { self.nes.keyboard.setTouch(k,"pressed");});
-									_.each(data.release, function(k) { self.nes.keyboard.setTouch(k)});
-            		},
+                sendInput: function(data) {
+                  var self = this;
+                  var i = data.press.length;
+                  while (i--) {
+                    self.nes.keyboard.setTouch(data.press[i],"pressed");
+                  }
+                  i = data.release.length; 
+                  while (i--) {
+                    self.nes.keyboard.setTouch(data.release[i]);
+                  }
+                },
                 loadROM: function() {
                     var self = this;
                     self.updateStatus("Downloading...");
